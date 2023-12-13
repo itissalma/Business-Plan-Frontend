@@ -1,0 +1,60 @@
+.business-plan-container {
+    width: 80%;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  textarea {
+    width: 100%;
+    background-color: #e2ecff;
+    border-radius: 4px;
+    margin-top: 5px; /* Adjust as needed */
+  }
+  
+  .checkbox-container {
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
+  .business-plan-container .section-content input[type="checkbox"] {
+    width: 10% ;
+    height: 20px; /* Adjust as needed */
+  }
+  
+  .business-plan-section {
+    margin-bottom: 20px;
+  }
+  
+  .button2 {
+    width: 10%;
+  }
+  
+  button {
+    background-color: #faeed1;
+    color: #282c34;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #ffe099;
+  }
+  
+  /* Style for the checkbox and label */
+  .section-content {
+    display: flex;
+    align-items: center;
+  }
+  

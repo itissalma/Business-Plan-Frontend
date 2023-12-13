@@ -29,7 +29,7 @@ const Dashboard = () => {
   
       <div className="document-list">
         {/* Add the new document card with the same styling */}
-        <Link to="/editor" className="no-decoration">
+        <Link to="/questions" className="no-decoration">
           <div className="document-card new-document-card">
             <span className="add-icon">+</span>
           </div>

@@ -13,10 +13,6 @@ const LoginForm = () => {
     console.log("Username: " + username);
     
     try {
-      const formData = new FormData();
-      formData.append('username', username);
-      formData.append('password', password);
-
       //send response as parameters and not body
       const response = await axios.post(`http://localhost:8080/login?username=${username}&password=${password}`, null, { withCredentials: true });
   

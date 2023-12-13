@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginForm from './LoginForm/login';
 import Dashboard from './Dashboard/dashboard';
 import './App.css';
+import Questionnare from './Questionnaire/questions';
+import BusinessPlan from './BusinessPlan/document';
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
           <Routes>
             <Route path="/login" element={<LoginForm />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/questions" element={<Questionnare />} />
+            <Route path="/document" element={<BusinessPlan />} />
             <Route path="/" element={<LoginForm />} />
           </Routes>
         </header>
