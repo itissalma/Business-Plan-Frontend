@@ -1,0 +1,50 @@
+.dashboard-container {
+    /* Your existing styles for the dashboard container */
+  }
+  
+  .document-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .document-card {
+    border: 1px solid #dff0d8;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+    width: 200px;
+    height: 150px;
+    /* center the text vertically*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+
+  .document-card:hover {
+    border: 1px solid #FAEED1;
+  }
+  
+  .document-card.new-document-card {
+    background-color: #FAEED1; /* Light green background for the new document card */
+    cursor: pointer;
+  }
+  
+  .add-icon {
+    font-size: 48px;
+    color: #5bc0de; /* Blue color for the plus sign */
+  }
+
+  .add-icon:hover{
+    color: #21748d; /* Darker blue color for the plus sign on hover */
+  }
+  
+  .document-name:hover {
+    color:#FAEED1; ;
+    /* Your styles for the document name */
+  }
+  .no-decoration {
+    text-decoration: none;
+    color: inherit; /* Optionally inherit the color */
+  }  

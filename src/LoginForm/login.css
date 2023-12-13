@@ -1,0 +1,60 @@
+/* LoginForm.css 272B33 */
+.login-container {
+    width: 300px; /* Set a width for the container if needed */
+    margin: auto; /* Center the form horizontally */
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    /*send to left side*/
+    font-size: 18px;
+    align-self: flex-start;
+    margin-bottom: 8px;
+    margin-top: 10px;
+  }
+  button {
+    margin-top: 16px;
+    /* add cool styling to the button */
+    background-color: #FAEED1; /* Green */
+    border: none;
+    color: #282c34;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+  }
+  input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #282c34;
+    border-radius: 4px;
+  }
+  .error-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: #ffcccc;
+    border: 1px solid #ff0000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .error-popup p {
+    margin: 0;
+  }
+  
+  .error-popup button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
