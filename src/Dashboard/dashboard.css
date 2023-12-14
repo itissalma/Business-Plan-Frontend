@@ -8,6 +8,7 @@
   }
   
   .document-card {
+    position: relative; /* Required for positioning the delete icon */
     border: 1px solid #dff0d8;
     border-radius: 8px;
     margin: 10px;
@@ -19,11 +20,28 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-
+  }
+  
+  .delete-icon {
+    position: absolute;
+    bottom: -25px; /* Adjusted to bottom */
+    right: 0px;
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #dc3545; /* Red color for the delete icon */
+    visibility: hidden; /* Initially hidden */
+  }
+  
+  .document-card:hover .delete-icon {
+    visibility: visible; /* Visible on hover */
+    background-color: #FAEED1;
   }
 
-  .document-card:hover {
-    border: 1px solid #FAEED1;
+  .document-card:hover{
+    /* make text jump up */
+    transform: translateY(-5px);
   }
   
   .document-card.new-document-card {
@@ -35,16 +53,18 @@
     font-size: 48px;
     color: #5bc0de; /* Blue color for the plus sign */
   }
-
-  .add-icon:hover{
+  
+  .add-icon:hover {
     color: #21748d; /* Darker blue color for the plus sign on hover */
   }
   
   .document-name:hover {
-    color:#FAEED1; ;
+    color: #FAEED1;
     /* Your styles for the document name */
   }
+  
   .no-decoration {
     text-decoration: none;
     color: inherit; /* Optionally inherit the color */
-  }  
+  }
+  

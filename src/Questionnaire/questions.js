@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import './questions.css'; // Import your CSS file
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+
 
 const Questionnare = () => {
+const storedUsername = sessionStorage.getItem('username'); // Retrieve username from sessionStorage
   const [formData, setFormData] = useState({
     companyName: '',
     businessOverview: '',
@@ -11,8 +14,11 @@ const Questionnare = () => {
     targetAudience: '',
     employeesCount: '',
     businessGoals: '',
+    userName: storedUsername || '', // Use stored username if available
   });
   const [showError, setShowError] = useState(false);
+  const [redirect, setRedirect] = useState(false);
+  const [documentData, setDocumentData] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,33 +28,40 @@ const Questionnare = () => {
     });
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // Check if any field is empty
-      if (Object.values(formData).some(value => value === '')) {
+      if (Object.values(formData).some((value) => value === '')) {
         throw new Error('Please fill in all fields.');
       }
 
-      const queryParams = new URLSearchParams(formData).toString();
+      // Make a POST request with the form data in the request body
+      const response = await axios.post('http://localhost:8080/questions', formData);
 
-      // Make a GET request with the form data as URL parameters
-      const response = await axios.post(`http://localhost:8080/questions?${queryParams}`);
-      
       // Handle the response as needed
       console.log('API response:', response.data);
 
-      if(response.status === 200){
-        window.location.href = '/document';
-      }
+      if (response.status === 200) {
+        // Assuming the server responds with the document data
+        const documentData = response.data;
 
+        // Set the redirect state to true
+        setRedirect(true);
+        setDocumentData(documentData);
+      }
     } catch (error) {
       console.error('Error submitting form:', error.message);
       setShowError(true);
-
-      // Handle the error, for example, display an error message to the user
     }
   };
+
+  if (redirect && documentData) {
+    // Use window.location.href to navigate
+    window.location.href = `/document/${documentData.id}`;
+    return null; // Prevent rendering anything else before redirect
+  }
 
   return (
     <div className="question-form-container">
