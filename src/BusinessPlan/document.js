@@ -5,6 +5,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import './document.css';
 
 const BusinessPlan = () => {
+const storedUsername = sessionStorage.getItem('username');
   const { id } = useParams(); // Access the document ID from the route
   console.log("id: " + id);
 
@@ -46,7 +47,7 @@ const BusinessPlan = () => {
         .reduce((acc, [section, content]) => ({ ...acc, [section]: content }), {});
 
       // Send only the checked sections data to your backend
-      await axios.post(`http://localhost:8080/document/${id}`, checkedSections);
+      await axios.post(`http://localhost:8080/business-plan?username=${storedUsername}`, checkedSections);
 
       console.log(`Document ${id} data submitted successfully!`);
     } catch (error) {

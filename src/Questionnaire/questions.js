@@ -38,7 +38,7 @@ const storedUsername = sessionStorage.getItem('username'); // Retrieve username 
       }
 
       // Make a POST request with the form data in the request body
-      const response = await axios.post('http://localhost:8080/questions', formData);
+      const response = await axios.post(`http://localhost:8080/questions?username=${storedUsername}`, formData);
 
       // Handle the response as needed
       console.log('API response:', response.data);
