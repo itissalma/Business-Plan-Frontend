@@ -1,8 +1,8 @@
+// Salma Aly 900203182 Shady Nessim 900191322
 import React, { useState } from 'react';
 import './questions.css'; // Import your CSS file
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 
 const Questionnare = () => {
 const storedUsername = sessionStorage.getItem('username'); // Retrieve username from sessionStorage
@@ -19,6 +19,7 @@ const storedUsername = sessionStorage.getItem('username'); // Retrieve username 
   const [showError, setShowError] = useState(false);
   const [redirect, setRedirect] = useState(false);
   const [documentData, setDocumentData] = useState(null);
+  const [selectedDocumentId, setSelectedDocumentId] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -41,6 +42,7 @@ const storedUsername = sessionStorage.getItem('username'); // Retrieve username 
       const response = await axios.post(
         `http://localhost:8080/questions?username=${storedUsername}&companyName=${formData.companyName}&businessOverview=${formData.businessOverview}&country=${formData.country}&productsServices=${formData.productsServices}&targetAudience=${formData.targetAudience}&employeesCount=${formData.employeesCount}&businessGoals=${formData.businessGoals}`
       );
+
       
       // Handle the response as needed
       console.log('API response:', response.data);
@@ -52,6 +54,8 @@ const storedUsername = sessionStorage.getItem('username'); // Retrieve username 
         // Set the redirect state to true
         setRedirect(true);
         setDocumentData(documentData);
+        setSelectedDocumentId(documentData.id);
+        
       }
     } catch (error) {
       console.error('Error submitting form:', error.message);
@@ -62,7 +66,10 @@ const storedUsername = sessionStorage.getItem('username'); // Retrieve username 
   if (redirect && documentData) {
     // Use window.location.href to navigate
     window.location.href = `/document/${documentData.id}`;
-    return null; // Prevent rendering anything else before redirect
+    //console.log("documentDatayeeee: " + documentData);
+    //send the documentData too using state
+
+    return documentData; // Prevent rendering anything else before redirect
   }
 
   return (
@@ -104,7 +111,11 @@ const storedUsername = sessionStorage.getItem('username'); // Retrieve username 
           <textarea name="businessGoals" value={formData.businessGoals} onChange={handleInputChange} />
         </label>
 
+        <Link to={`/document/${selectedDocumentId}`} state={{ documentData }} className="no-decoration">
         <button type="submit">Submit</button>
+              </Link>
+        {/* <button type="submit">Submit</button> */}
+
       </form>
 
       {showError && (
