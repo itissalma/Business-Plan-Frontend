@@ -6,13 +6,19 @@ import './dashboard.css'; // Import your CSS file
 const Dashboard = () => {
     const storedUsername = sessionStorage.getItem('username');
   const [documents, setDocuments] = useState([]);
+  const [selectedDocumentId, setSelectedDocumentId] = useState(null);
+  const [documentData, setDocumentData] = useState(null);
+
 
   useEffect(() => {
+    
     const fetchDocuments = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/documents?username=${storedUsername}`);
 
         setDocuments(response.data);
+    
+        
       } catch (error) {
         console.error('Error fetching documents:', error.message);
       }
@@ -30,16 +36,22 @@ const Dashboard = () => {
     }
   };
 
-  const handleDocumentClick = async(documentId) => {
-    // Redirect to the "/document" route with the selected document's ID
-    //TODO: call the api for getting the document data
+  const handleDocumentClick = async (documentId) => {
     try {
-    await axios.get(`http://localhost:8080/document/${documentId}?username=${storedUsername}`); 
-    window.location.href = '/document/' + documentId;
+      const response = await axios.get(`http://localhost:8080/document/${documentId}?username=${storedUsername}`);
+      console.log("the response is " + JSON.stringify(response.data));
+      const newDocumentData = response.data;
+
+      // Set the documentData state with the fetched data
+      setDocumentData(newDocumentData);
+
+      // Set the selected document ID
+      setSelectedDocumentId(documentId);
     } catch (error) {
-        console.error('Error getting document:', error.message);
-        }
+      console.error('Error getting document:', error.message);
+    }
   };
+  
 
   const handleLogout = () => {
     // Clear username from session storage
@@ -48,11 +60,10 @@ const Dashboard = () => {
     window.location.href = '/login';
 };
 
-  return (
+return (
     <div className="dashboard-container">
       <h2>Dashboard</h2>
       <button type="button" onClick={handleLogout}>Logout</button>
-      
 
       <div className="document-list">
         <Link to="/questions" className="no-decoration">
@@ -68,7 +79,16 @@ const Dashboard = () => {
             id={`document-${document.id}`}
             onClick={() => handleDocumentClick(document.id)}
           >
-            <span className="document-name">{document.name}</span>
+            {selectedDocumentId === document.id && (
+              <Link to={`/document/${selectedDocumentId}`} state={{ documentData }} className="no-decoration">
+                <span className="document-name">{document.name}</span>
+              </Link>
+            )}
+
+            {selectedDocumentId !== document.id && (
+              <span className="document-name">{document.name}</span>
+            )}
+
             <button
               type="button"
               className="delete-icon"

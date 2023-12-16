@@ -8,6 +8,7 @@ const BusinessPlan = () => {
 const storedUsername = sessionStorage.getItem('username');
   const { id } = useParams(); // Access the document ID from the route
   console.log("id: " + id);
+  console.log("storedUsername: " + storedUsername);
 
   const location = useLocation();
   const { documentData } = location.state || {}; // Access documentData from the state
@@ -27,9 +28,13 @@ const storedUsername = sessionStorage.getItem('username');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
+    console.log("documentData: " + documentData);
     // Set initial sections state with documentData
     if (documentData) {
       setSections(documentData);
+      console.log(documentData);
+      //print the stored username
+        console.log("storedUsername: " + storedUsername);
     }
   }, [documentData]);
 
