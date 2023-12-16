@@ -58,3 +58,10 @@
     align-items: center;
   }
   
+  .button-container {
+    display: flex;
+    /*add some space between the buttons*/
+    justify-content: space-between;
+    gap: 10px; /* Adjust the gap as needed */
+
+  }

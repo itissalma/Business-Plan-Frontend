@@ -45,6 +45,10 @@ const storedUsername = sessionStorage.getItem('username');
     }));
   };
 
+  const backToDashboard = () => {
+    window.location.href = '/dashboard';
+    };
+
   const handleSubmit = async () => {
     try {
       // Filter sections with checkboxes checked
@@ -113,22 +117,30 @@ const storedUsername = sessionStorage.getItem('username');
         </div>
       ))}
 
-      <button type="button" onClick={handleSubmit}>
-        Save Business Plan
-      </button>
+    <div className="button-container">
+        <button type="button" onClick={handleSubmit}>
+            Save Business Plan
+        </button>
+        <button type="button" onClick={backToDashboard}>
+            Return to Dashboard
+        </button>
+    </div>
+
 
       {/* Modal for displaying expanded text */}
       <Modal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="Expanded Text Modal"
-      >
+        >
         <h2>{selectedSection} - Expanded Text</h2>
-        <p>{expandedText}</p>
+        {expandedText.split('\\n\\n').map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+        ))}
         <button type="button" onClick={closeModal}>
-          Close
+            Close
         </button>
-      </Modal>
+    </Modal>
     </div>
   );
 };
