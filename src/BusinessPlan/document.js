@@ -14,11 +14,12 @@ const storedUsername = sessionStorage.getItem('username');
 
   const [sections, setSections] = useState({
     'Executive Summary': '',
-    'Business Description': '',
-    'Mission Statement': '',
+    'Company Description': '',
+    'Products and Services': '',
     'Market Analysis': '',
-    'Products or Services': '',
-    'Marketing Plan': '',
+    'Startegy and Implementation': '',
+    'Organization and Management Team': '',
+    'Financial Plan': '',
   });
 
   const [expandedText, setExpandedText] = useState('');

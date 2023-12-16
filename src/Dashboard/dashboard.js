@@ -30,10 +30,15 @@ const Dashboard = () => {
     }
   };
 
-  const handleDocumentClick = (documentId) => {
+  const handleDocumentClick = async(documentId) => {
     // Redirect to the "/document" route with the selected document's ID
     //TODO: call the api for getting the document data
+    try {
+    await axios.get(`http://localhost:8080/document/${documentId}?username=${storedUsername}`); 
     window.location.href = '/document/' + documentId;
+    } catch (error) {
+        console.error('Error getting document:', error.message);
+        }
   };
 
   const handleLogout = () => {
