@@ -46,11 +46,12 @@ const storedUsername = sessionStorage.getItem('username'); // Retrieve username 
       
       // Handle the response as needed
       console.log('API response:', response.data);
+      console.log("the response is " + JSON.stringify(response.data));
+      console.log("id is " + response.data.id);
 
       if (response.status === 200) {
         // Assuming the server responds with the document data
         const documentData = response.data;
-
         // Set the redirect state to true
         setRedirect(true);
         setDocumentData(documentData);
@@ -65,11 +66,11 @@ const storedUsername = sessionStorage.getItem('username'); // Retrieve username 
 
   if (redirect && documentData) {
     // Use window.location.href to navigate
-    window.location.href = `/document/${documentData.id}`;
+    window.location.href = `/dashboard`;
     //console.log("documentDatayeeee: " + documentData);
     //send the documentData too using state
 
-    return documentData; // Prevent rendering anything else before redirect
+    return null; // Prevent rendering anything else before redirect
   }
 
   return (
@@ -111,10 +112,7 @@ const storedUsername = sessionStorage.getItem('username'); // Retrieve username 
           <textarea name="businessGoals" value={formData.businessGoals} onChange={handleInputChange} />
         </label>
 
-        <Link to={`/document/${selectedDocumentId}`} state={{ documentData }} className="no-decoration">
         <button type="submit">Submit</button>
-              </Link>
-        {/* <button type="submit">Submit</button> */}
 
       </form>
 

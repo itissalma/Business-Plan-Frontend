@@ -40,6 +40,7 @@ const Dashboard = () => {
   const handleDocumentClick = async (documentId) => {
     try {
       const response = await axios.get(`http://localhost:8080/document/${documentId}?username=${storedUsername}`);
+      console.log("API response: " + response.data);
       console.log("the response is " + JSON.stringify(response.data));
       const newDocumentData = response.data;
 
