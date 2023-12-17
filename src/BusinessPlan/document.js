@@ -57,10 +57,13 @@ const storedUsername = sessionStorage.getItem('username');
         .filter(([section]) => document.getElementById(`${section}-checkbox`).checked)
         .reduce((acc, [section, content]) => ({ ...acc, [section]: content }), {});
 
+        console.log("id is " + id);
       // Send only the checked sections data to your backend
-      await axios.post(`http://localhost:8080/business-plan?username=${storedUsername}`, checkedSections);
+      await axios.post(`http://localhost:8080/business-plan?username=${storedUsername}&id=${id}`, checkedSections);
 
       console.log(`Document ${id} data submitted successfully!`);
+      alert("Document submitted successfully!");
+      window.location.href = '/dashboard';
     } catch (error) {
       console.error(`Error submitting data for document ${id}:`, error.message);
     }
@@ -135,7 +138,7 @@ const storedUsername = sessionStorage.getItem('username');
         contentLabel="Expanded Text Modal"
         >
         <h2>{selectedSection} - Expanded Text</h2>
-        {expandedText.split('\\n\\n').map((paragraph, index) => (
+        {expandedText.split('~~').map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
         ))}
         <button type="button" onClick={closeModal}>
