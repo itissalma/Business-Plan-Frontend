@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Demo
+## Demo
 <p float="left" align="center">
   <img src="demo.gif" width="1400" /> 
 </p>
